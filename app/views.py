@@ -8,13 +8,13 @@ def question_page(request):
     return render(request, 'question.html')
 
 def new_question_page(request):
-    return render(request, 'new_question.html')
+    return render(request, 'ask.html')
 
 def tag_page(request):
     return render(request, 'tag_page.html')
 
 def register_page(request):
-    return render(request, 'register.html')
+    return render(request, 'signup.html')
 
 def login_page(request):
     return render(request, 'login.html')
