@@ -1,0 +1,87 @@
+{% extends 'inc/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-row justify-content-start">
+            <h3>Settings: user user</h3>
+        </div>
+        <div class="d-flex flex-row justify-content-between form-group has-feedback my-2 align-items-center">
+            <div class="d-flex w-25">
+                <label class="form-label me-3">Login</label>
+            </div>
+            <div class="d-flex w-50">
+                <input type="text" class="form-control form-input" placeholder="" required>
+            </div>
+            <div class="d-flex w-25"><span class="glyphicon form-control-feedback"></span></div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between form-group has-feedback my-2 align-items-center">
+            <div class="d-flex w-25">
+                <label class="form-label me-3">Email</label>
+            </div>
+            <div class="d-flex w-50">
+                <input type="email" aria-describedby="emailCheck" class="form-control form-input" placeholder=""
+                       required>
+            </div>
+            <div class="d-flex w-25 ps-3">
+                <label id="emailCheck" class="text-danger">
+                    <h5>Invalid email</h5>
+                </label>
+                <span class="glyphicon form-control-feedback"></span>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between form-group has-feedback my-2 align-items-center">
+            <div class="d-flex w-25">
+                <label class="form-label me-3">Nickname</label>
+            </div>
+            <div class="d-flex w-50">
+                <input type="text" class="form-control form-input" placeholder="" required>
+            </div>
+            <div class="d-flex w-25 ps-3">
+                <label id="emailCheck" class="text-danger">
+                    <h5>Nickname is already taken</h5>
+                </label>
+                <span class="glyphicon form-control-feedback"></span>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column justify-content-between form-group has-feedback my-2 align-items-center">
+            <div class="d-flex flex-row w-100 my-1">
+                <div class="d-flex w-25">
+                    <label class="form-label">Upload avatar</label>
+                </div>
+                <div class="d-flex w-50 avatar_question">
+                    <img src="{% static '/img/avatar.png' %}">
+                </div>
+                <div class="d-flex w-25">
+
+                </div>
+            </div>
+            <div class="d-flex flex-row w-100 my-3">
+                <div class="d-flex w-25">
+
+                </div>
+                <div class="d-flex w-50">
+                    <input type="file" class="form-control" id="inputGroupFile01"
+                           aria-describedby="inputGroupFileAddon01">
+                </div>
+                <div class="d-flex w-25">
+                    <span class="glyphicon form-control-feedback"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-start">
+            <div class="d-flex w-25">
+            </div>
+            <div class="d-flex w-50 justify-content-center">
+                <button id="submit" type="submit" class="btn btn-primary submit" value="Login">Save</button>
+            </div>
+            <div class="d-flex w-25">
+                <span class="glyphicon form-control-feedback"></span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

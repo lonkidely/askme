@@ -1,0 +1,35 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AskMe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="{% static '/css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/question.css' %}">
+</head>
+<body>
+
+{% include 'inc/header_auth.html' %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-9">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+        <div class="col-3">
+            {% include 'inc/right_column.html' %}
+        </div>
+    </div>
+</main>
+
+{% include 'inc/footer.html' %}
+
+</body>
+</html>

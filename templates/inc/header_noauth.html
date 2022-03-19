@@ -1,0 +1,29 @@
+{% load static %}
+
+<header class="p-3 mb-3 border-bottom sticky-top bg-white">
+    <div class="container my-header">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="{% static '/img/logo.jpg' %}">
+                <h4 class="text-dark mx-2 mb-0">AskMe</h4>
+            </a>
+
+            {% comment %}<ul class="nav col-12 col-lg-auto justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-dark">AskMe</a></li>
+            </ul>{% endcomment %}
+
+            <form class="col-12 col-lg-4 mb-3 mb-lg-0 me-lg-3 mx-lg-auto">
+                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <div class="col-12 col-lg-1 mb-3 mb-lg-0 me-lg-3">
+                <a class="btn btn-primary" href="{% url 'new-question' %}" role="button">Ask</a>
+            </div>
+
+            <div class="col-12 col-lg-3 col-md-3 text-end">
+                <a class="btn btn-outline-primary me-2" href="{% url 'sign-in' %}">Login</a>
+                <a class="btn btn-primary" href="{% url 'sign-up' %}">Register</a>
+            </div>
+        </div>
+    </div>
+</header>

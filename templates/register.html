@@ -1,0 +1,104 @@
+{% extends 'inc/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="d-flex flex-column">
+        <div class="d-flex justify-content-center"><h2>Sign Up</h2></div>
+        <form>
+            <div class="d-flex flex-row justify-content-between form-group has-feedback my-2 align-items-center">
+                <div class="d-flex w-25">
+                    <label class="form-label me-3"><h4>Login</h4></label>
+                </div>
+                <div class="d-flex w-50">
+                    <input type="text" class="form-control form-input" placeholder="" required>
+                </div>
+                <div class="d-flex w-25"><span class="glyphicon form-control-feedback"></span></div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-between form-group has-feedback my-2 align-items-center">
+                <div class="d-flex w-25">
+                    <label class="form-label me-3"><h4>Email</h4></label>
+                </div>
+                <div class="d-flex w-50">
+                    <input type="email" aria-describedby="emailCheck" class="form-control form-input" placeholder=""
+                           required>
+                </div>
+                <div class="d-flex w-25 ps-3">
+                    <label id="emailCheck" class="text-danger">
+                        <h5>Invalid email</h5>
+                    </label>
+                    <span class="glyphicon form-control-feedback"></span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-between form-group has-feedback my-2 align-items-center">
+                <div class="d-flex w-25">
+                    <label class="form-label me-3"><h4>Nickname</h4></label>
+                </div>
+                <div class="d-flex w-50">
+                    <input type="text" class="form-control form-input" placeholder="" required>
+                </div>
+                <div class="d-flex w-25 ps-3">
+                    <label id="emailCheck" class="text-danger">
+                        <h5>Nickname is already taken</h5>
+                    </label>
+                    <span class="glyphicon form-control-feedback"></span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-between form-group has-feedback my-2 align-items-center">
+                <div class="d-flex w-25">
+                    <label class="form-label"><h4>Password</h4></label>
+                </div>
+                <div class="d-flex w-50">
+                    <input type="password" class="form-control form-input" placeholder="" required>
+                </div>
+                <div class="d-flex w-25 ps-3">
+                    <span class="glyphicon form-control-feedback"></span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-between form-group has-feedback my-2 align-items-center">
+                <div class="d-flex w-25">
+                    <label class="form-label"><h4>Repeat password</h4></label>
+                </div>
+                <div class="d-flex w-50">
+                    <input type="password" aria-describedby="passwordCheck" class="form-control form-input"
+                           placeholder=""
+                           required>
+                </div>
+                <div class="d-flex w-25 ps-3">
+                    <label id="emailCheck" class="text-danger">
+                        <h5>Passwords are different!</h5>
+                    </label>
+                    <span class="glyphicon form-control-feedback"></span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-between form-group has-feedback my-2 align-items-center">
+                <div class="d-flex w-25">
+                    <label class="form-label"><h4>Avatar</h4></label>
+                </div>
+                <div class="d-flex w-50">
+                    <input type="file" class="form-control" id="inputGroupFile01"
+                           aria-describedby="inputGroupFileAddon01">
+                </div>
+                <div class="d-flex w-25">
+                    <span class="glyphicon form-control-feedback"></span>
+                </div>
+            </div>
+        </form>
+
+        <div class="d-flex justify-content-start">
+            <div class="d-flex w-25">
+                <label class="invisible"></label>
+            </div>
+            <div class="d-flex w-50 justify-content-center">
+                <button id="submit" type="submit" class="btn btn-primary submit" value="Login">Register</button>
+            </div>
+            <div class="d-flex w-25">
+                <span class="glyphicon form-control-feedback"></span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

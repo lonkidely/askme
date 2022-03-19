@@ -1,0 +1,20 @@
+{% extends 'inc/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="d-flex justify-content-start">
+            <div class="mx-2 mb-3">
+                <h2>New questions</h2>
+            </div>
+            <div class="mx-2 mb-3">
+                <h2><a href="#">Hot questions</a></h2>
+            </div>
+        </div>
+    </div>
+    {% include 'inc/question.html' %}
+    {% include 'inc/question.html' %}
+    {% include 'inc/question.html' %}
+    {% include 'inc/question.html' %}
+    {% include 'inc/paginator.html' %}
+{% endblock %}
