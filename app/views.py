@@ -41,24 +41,21 @@ def hot_questions_page(request):
 
 
 def question_page(request, number):
-    try:
-        question = get_object_or_404(Question, id=number)
+    question = get_object_or_404(Question, id=number)
 
-        tags = Tag.objects.popular_tags()
-        members = Author.objects.popular_authors()
+    tags = Tag.objects.popular_tags()
+    members = Author.objects.popular_authors()
 
-        answers = paginate(Answer.objects.answers(number), request, 5)
-        return render(request, 'question.html', {
-            'question': question,
-            'short': False,
-            'page': answers,
-            'comments': answers,
-            'page_end_diff': answers.paginator.num_pages - answers.number,
-            'tags': tags,
-            'members': members
-        })
-    except Exception as e:
-        return render(request, '404_page.html')
+    answers = paginate(Answer.objects.answers(number), request, 5)
+    return render(request, 'question.html', {
+        'question': question,
+        'short': False,
+        'page': answers,
+        'comments': answers,
+        'page_end_diff': answers.paginator.num_pages - answers.number,
+        'tags': tags,
+        'members': members
+    })
 
 
 def new_question_page(request):
@@ -89,3 +86,6 @@ def login_page(request):
 
 def user_settings_page(request):
     return render(request, 'user_settings.html')
+
+def not_found_page(request, exception):
+    return render(request, '404_page.html', status=404)

@@ -31,3 +31,5 @@ urlpatterns = [
     path('login', views.login_page, name='sign-in'),
     path('settings', views.user_settings_page, name='settings'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = views.not_found_page
