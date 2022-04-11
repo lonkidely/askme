@@ -5,25 +5,18 @@
         <div class="m-5">
             <h4 class="fst-italic">Popular tags</h4>
             <div>
-                <a href="{% url 'tag' %}"><span class="badge rounded-pill bg-primary">C/C++</span></a>
-                <a href="#"><span class="badge rounded-pill bg-secondary">Django</span></a>
-                <a href="#"><span class="badge rounded-pill bg-success">Python</span></a>
-                <a href="#"><span class="badge rounded-pill bg-danger">HTML</span></a>
-                <a href="#"><span class="badge rounded-pill bg-warning text-dark">CSS</span></a>
-                <a href="#"><span class="badge rounded-pill bg-info text-dark">JavaScript</span></a>
-                <a href="#"><span class="badge rounded-pill bg-light text-dark">React</span></a>
-                <a href="#"><span class="badge rounded-pill bg-dark">Vue.js</span></a>
+                {% for tag in tags %}
+                    <a href="{% url 'tag' tag %}"><span
+                            class="badge rounded-pill {% cycle 'bg-primary' 'bg-secondary' 'bg-success' 'bg-danger' 'bg-warning text-dark' 'bg-info text-dark' %}">{{ tag }}</span></a>
+                {% endfor %}
             </div>
         </div>
         <div class="m-5">
             <h4 class="fst-italic">Best Members</h4>
             <ol class="list-unstyled">
-                <li><a href="#">lonkidely</a></li>
-                <li><a href="#">not_lonkidely</a></li>
-                <li><a href="#">we_are_lonkidely</a></li>
-                <li><a href="#">he_is_lonkidely</a></li>
-                <li><a href="#">you_are_not_lonkidely</a></li>
-                <li><a href="#">i_am_lonkidely</a></li>
+                {% for member in members %}
+                    <li><a href="#">{{ member.nickname }}</a></li>
+                {% endfor %}
             </ol>
         </div>
     </div>

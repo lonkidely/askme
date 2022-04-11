@@ -21,10 +21,11 @@
         <div class="col-9">
             {% block content %}
 
-            {% endblock %}
+            {% endblock content %}
         </div>
         <div class="col-3">
-            {% include 'inc/right_column.html' %}
+            {% block right_column %}
+            {% endblock right_column %}
         </div>
     </div>
 </main>

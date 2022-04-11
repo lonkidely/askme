@@ -4,17 +4,32 @@
 {% block content %}
     <div class="row">
         <div class="d-flex justify-content-start">
-            <div class="mx-2 mb-3">
-                <h2>New questions</h2>
-            </div>
-            <div class="mx-2 mb-3">
-                <h2><a href="#">Hot questions</a></h2>
-            </div>
+            {% if type == 'hot' %}
+                <div class="mx-2 mb-3">
+                    <h2><a href="{% url 'new-questions' %}">New questions</a></h2>
+                </div>
+            {% elif type == 'new' %}
+                <div class="mx-2 mb-3">
+                    <h2><a href="{% url 'hot-questions' %}">Hot questions</a></h2>
+                </div>
+            {% else %}
+                <div class="mx-2 mb-3">
+                    <h2><a href="{% url 'new-questions' %}">New questions</a></h2>
+                </div>
+                <div class="mx-2 mb-3">
+                    <h2><a href="{% url 'hot-questions' %}">Hot questions</a></h2>
+                </div>
+            {% endif %}
         </div>
     </div>
-    {% include 'inc/question.html' %}
-    {% include 'inc/question.html' %}
-    {% include 'inc/question.html' %}
-    {% include 'inc/question.html' %}
+
+    {% for question in page %}
+        {% include 'inc/question.html' %}
+    {% endfor %}
+
     {% include 'inc/paginator.html' %}
-{% endblock %}
+{% endblock content %}
+
+{% block right_column %}
+    {% include 'inc/right_column.html' %}
+{% endblock right_column %}

@@ -3,11 +3,10 @@
 
 {% block content %}
     {% include 'inc/question_answer.html' %}
-    {% include 'inc/comment.html' %}
-    {% include 'inc/comment.html' %}
-    {% include 'inc/comment.html' %}
-    {% include 'inc/comment.html' %}
-    {% include 'inc/comment.html' %}
+    {% for comment in comments %}
+        {% include 'inc/comment.html' %}
+    {% endfor %}
+
     {% include 'inc/paginator.html' %}
 
     <div class="d-flex flex-row input-group my-3 justify-content-start">
@@ -18,3 +17,7 @@
         <div class="d-flex w-50"><a href="#" class="btn btn-primary sign-up-btn">Answer</a></div>
     </div>
 {% endblock %}
+
+{% block right_column %}
+    {% include 'inc/right_column.html' %}
+{% endblock right_column %}

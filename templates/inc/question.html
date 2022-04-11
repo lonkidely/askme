@@ -5,35 +5,34 @@
             <div class="row align-items-center">
                 <div class="col-1 avatar_question">
                     <div class="mb-4">
-                        <img src="{% static '/img/avatar.png' %}">
+                        <img src="{{ question.author.avatar.url }}">
                     </div>
                 </div>
                 <div class="col-11 mb-3 mb-sm-0">
                     <h5>
-                        <a href="{% url 'question' %}" class="text-primary">Why are TechnoPark's students so cool?</a>
+                        <a href="{% url 'question' question.id %}" class="text-primary">{{ question.title }}</a>
                     </h5>
                     <p class="text-sm">
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
+                        {% if short == True %}
+                            {{ question.content | truncatewords:50 }}
+                        {% else %}
+                            {{ question.content }}
+                        {% endif %}
                     </p>
                     <div class="row text-center">
                         <div class="col-2 text-end">
                             <span class="mx-1"><a href="#"><i class="fa fa-thumbs-o-up text-success"></i></a></span>
-                            <b>14</b>
+                            <b>{{ question.rating }}</b>
                             <span class="mx-1"><a href="#"><i class="fa fa-thumbs-o-down text-danger"></i></a></span>
                         </div>
                         <div class="col-4 text-sm op-5 text-end">
-                            <a href="{% url 'question' %}"><b>Answers(17)</b></a>
+                            <a href="{% url 'question' question.id %}"><b>Answers({{ question.answers_count }})</b></a>
                         </div>
                         <div class="col-6 text-sm op-5">
                             <b>Tags:</b>
-                            <a href="#">C++</a>,
-                            <a href="#">Python</a>
+                            {% for tag in question.all_tags %}
+                                <a href="{% url 'tag' tag %}">{{ tag.title }}</a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

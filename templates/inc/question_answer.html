@@ -6,37 +6,27 @@
             <div class="row align-items-center">
                 <div class="col-2 avatar_question_answer">
                     <div class="mb-4">
-                        <img src="{% static '/img/avatar.png' %}">
+                        <img src="{{ question.author.avatar.url }}">
                     </div>
                 </div>
                 <div class="col-10 mb-3 mb-sm-0">
                     <h5>
-                        <a href="#" class="text-primary">Why are TechnoPark's students so cool?</a>
+                        <a href="#" class="text-primary">{{ question.title }}</a>
                     </h5>
                     <p class="text-sm">
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
-                        This is question. This is question. This is question.
+                        {{ question.content }}
                     </p>
                     <div class="row">
                         <div class="col-2 text-center">
                             <span class="mx-1"><a href="#"><i class="fa fa-thumbs-o-up text-success"></i></a></span>
-                            <b>14</b>
+                            <b>{{ question.rating }}</b>
                             <span class="mx-1"><a href="#"><i class="fa fa-thumbs-o-down text-danger"></i></a></span>
                         </div>
                         <div class="col-10 text-sm op-5 ps-5">
                             <b>Tags:</b>
-                            <a href="#">C++</a>,
-                            <a href="#">Python</a>,
-                            <a href="#">Go</a>,
-                            <a href="#">C#</a>,
-                            <a href="#">Django</a>,
-                            <a href="#">CSS</a>,
-                            <a href="#">React</a>
+                            {% for tag in question.all_tags %}
+                                <a href="{% url 'tag' tag %}">{{ tag.title }}</a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
