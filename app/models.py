@@ -123,6 +123,7 @@ class LikeQuestion(models.Model):
     class Meta:
         verbose_name = 'Like or dislike on question'
         verbose_name_plural = 'Likes or dislikes on questions'
+        unique_together = ['author', 'question']
 
 
 class LikeAnswer(models.Model):
@@ -138,3 +139,4 @@ class LikeAnswer(models.Model):
     class Meta:
         verbose_name = 'Like or dislike on answer'
         verbose_name_plural = 'Likes or dislike on answers'
+        unique_together = ['author', 'answer']

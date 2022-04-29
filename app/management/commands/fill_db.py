@@ -8,7 +8,7 @@ from faker import Faker
 f = Faker(['en-US'])
 Faker.seed(1259811)
 
-small = [100, 100, 1000, 10000, 10000, 10000]
+small = [10, 10, 100, 1000, 1000, 1000]
 medium = [2000, 2000, 20000, 200000, 200000, 200000]
 large = [20000, 20000, 200000, 2000000, 2000000, 2000000]
 
@@ -25,13 +25,13 @@ class Command(BaseCommand):
         parser.add_argument('--likes_questions', type=int, help='Questions likes amount')
         parser.add_argument('--likes_answers', type=int, help='Answers likes amount')
 
-    def write_to_db(self, Obj, objs):
-        slice_size = 1000
+    def write_to_db(self, Obj, objs, ignore_conflicts = False):
+        slice_size = 100000
         while True:
             slices = list(islice(objs, slice_size))
             if not slices:
                 break
-            Obj.objects.bulk_create(slices, slice_size)
+            Obj.objects.bulk_create(slices, len(slices), ignore_conflicts=ignore_conflicts)
 
     def fill_authors(self, amount):
         if amount is None:
@@ -147,7 +147,7 @@ class Command(BaseCommand):
                 state=states[i]
             ) for i in range(amount)
         )
-        self.write_to_db(LikeQuestion, likes)
+        self.write_to_db(LikeQuestion, likes, True)
 
         questions_rating = dict.fromkeys(questions_id, 0)
         for i in range(amount):
@@ -177,7 +177,7 @@ class Command(BaseCommand):
                 state=states[i]
             ) for i in range(amount)
         )
-        self.write_to_db(LikeAnswer, likes)
+        self.write_to_db(LikeAnswer, likes, True)
 
         answers_rating = dict.fromkeys(answers_id, 0)
         for i in range(amount):
@@ -210,10 +210,15 @@ class Command(BaseCommand):
             data_size = large
 
         self.fill_authors(data_size[0])
+        print('authors filling finished')
         self.fill_tags(data_size[1])
+        print('tags filling finished')
         self.fill_questions(data_size[2])
+        print('questions filling finished')
         self.fill_answers(data_size[3])
+        print('answers filling finished')
         self.fill_likes_questions(data_size[4])
+        print('question likes filling finished')
         self.fill_likes_answers(data_size[5])
-
+        print('answer likes filling finished')
         print('Filling database finished')

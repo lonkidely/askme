@@ -1,13 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 from app.models import Question, Answer, Author, Tag
-from django.contrib import auth
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def paginate(object_list, request, per_page=10):
     paginator = Paginator(object_list, per_page)
     page_number = request.GET.get('page')
-    return paginator.get_page(page_number)
+
+    try:
+        content = paginator.page(page_number)
+    except PageNotAnInteger:
+        content = paginator.page(1)
+    except EmptyPage:
+        content = paginator.page(paginator.num_pages)
+
+    return content
 
 
 def new_questions_page(request):
@@ -15,6 +22,7 @@ def new_questions_page(request):
     page = paginate(questions, request)
     tags = Tag.objects.popular_tags()
     members = Author.objects.popular_authors()
+
     return render(request, 'index.html', {
         'page': page,
         'type': 'new',
@@ -30,6 +38,7 @@ def hot_questions_page(request):
     page = paginate(questions, request)
     tags = Tag.objects.popular_tags()
     members = Author.objects.popular_authors()
+
     return render(request, 'index.html', {
         'page': page,
         'type': 'hot',
@@ -42,11 +51,10 @@ def hot_questions_page(request):
 
 def question_page(request, number):
     question = get_object_or_404(Question, id=number)
-
     tags = Tag.objects.popular_tags()
     members = Author.objects.popular_authors()
-
     answers = paginate(Answer.objects.answers(number), request, 5)
+
     return render(request, 'question.html', {
         'question': question,
         'short': False,
@@ -67,6 +75,7 @@ def tag_page(request, tag):
     page = paginate(questions, request)
     tags = Tag.objects.popular_tags()
     members = Author.objects.popular_authors()
+
     return render(request, 'index.html', {
         'page': page,
         'short': True,
@@ -86,6 +95,7 @@ def login_page(request):
 
 def user_settings_page(request):
     return render(request, 'user_settings.html')
+
 
 def not_found_page(request, exception):
     return render(request, '404_page.html', status=404)
